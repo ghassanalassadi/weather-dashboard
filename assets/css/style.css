@@ -2,6 +2,18 @@
     font-family: 'Kanit', sans-serif;
 }
 
+/* #current-weather {
+    position: absolute;
+    top: 5%;
+    right: 50%;
+}
+
+#weather-forecast {
+    position: absolute;
+    top: 25%;
+    right: 50%;
+}
+
 #city-name {
     margin-left: 5px;
     width: 200px;
@@ -15,4 +27,4 @@
     width: 200px;
     text-align: center;
     align-items: center;
-}
+} */
