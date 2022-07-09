@@ -19,7 +19,7 @@
     <div class="row row-cols-4">
         <div class="col">
             <div class="input-group mt-2 mb-3 ms-2" id="search-container">
-                <input type="text" placeholder="Enter City Name..." class="form-control" id="city-name">
+                <input type="text" placeholder="Enter City Name..." class="form-control" id="city-search">
                 <button type="button" class="btn btn-info text-white" id="search-button">Search</button>
             </div>
             <div id="history-container">
@@ -32,55 +32,55 @@
         <div class="col-6">
             <!-- Current Weather -->
             <div id="current-weather">
-                    <div class="card mt-2" style="width: 70rem; height: 30rem">
+                    <div class="card mt-2" style="width: 70rem; height: 22rem">
                         <div class="card-body">
                             <h2 class="card-title" id="city-name">Card Title</h2>
-                            <h3 id="current-date">Test</h3>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                                content.</p>
+                            <img id="current-icon" alt="current weather icon">
+                            <h3 id="current-date"></h3>
+                            <p id="weather-details"></p>
                         </div>
                 </div>
-            <div id="weather-details"></div>
             <!-- Future Weather -->
+            <h2 id="forecast-heading">5-Day Forecast:</h2>
             <div class="card-group mt-2" id="weather-forecast">
                 <!-- Day One -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
+                        <h5 class="card-title" id="date-one">Card title</h5>
+                        <img id="icon-one" alt="current weather icon">
+                        <p class="card-text" id="day-one"></p>
                     </div>
                 </div>
                 <!-- Day Two -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
+                        <h5 class="card-title" id="date-two">Card title</h5>
+                        <img id="icon-two" alt="current weather icon">
+                        <p class="card-text" id="day-two"></p>
                     </div>
                 </div>
                 <!-- Day Three -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
+                        <h5 class="card-title" id="date-three">Card title</h5>
+                        <img id="icon-three" alt="current weather icon">
+                        <p class="card-text" id="day-three"></p>
                     </div>
                 </div>
                 <!-- Day Four -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
+                        <h5 class="card-title" id="date-four">Card title</h5>
+                        <img id="icon-four" alt="current weather icon">
+                        <p class="card-text" id="day-four"></p>
                     </div>
                 </div>
                 <!-- Day Five -->
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                            content.</p>
+                        <h5 class="card-title" id="date-five">Card title</h5>
+                        <img id="icon-five" alt="current weather icon">
+                        <p class="card-text" id="day-five"></p>
                     </div>
                 </div>
         </div>
@@ -89,6 +89,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/style.js"></script>
 </body>
 </html>

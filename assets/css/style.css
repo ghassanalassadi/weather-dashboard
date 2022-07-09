@@ -2,29 +2,22 @@
     font-family: 'Kanit', sans-serif;
 }
 
-/* #current-weather {
-    position: absolute;
-    top: 5%;
-    right: 50%;
+.low-uv {
+    background-color: lightgreen;
 }
 
-#weather-forecast {
-    position: absolute;
-    top: 25%;
-    right: 50%;
+.moderate-uv {
+    background-color: yellow;
 }
 
-#city-name {
-    margin-left: 5px;
-    width: 200px;
+.high-uv {
+    background-color: orange;
 }
 
-#search-button{
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-    margin-left: 5px;
-    width: 200px;
-    text-align: center;
-    align-items: center;
-} */
+.very-high-uv {
+    background-color: red;
+}
+
+.extreme-uv {
+    background-color: purple;
+}
