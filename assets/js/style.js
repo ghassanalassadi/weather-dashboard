@@ -1,19 +1,24 @@
 let currentWeather = document.getElementById('current-weather');
 let forecastHeading = document.getElementById('forecast-heading');
 let weatherForecast = document.getElementById('weather-forecast');
+let historyContainer = document.getElementById('history-container');
 
 window.onload = function() {
     currentWeather.style.display = 'none';
     forecastHeading.style.display = 'none';
     weatherForecast.style.display = 'none';
+    historyContainer.style.display = 'block';
 }
 
 const searchBtn = document.getElementById('search-button');
 searchBtn.addEventListener('click', searchCity);
 
-function searchCity(event) {
-    event.preventDefault();
+function searchCity() {
     let citySearch = document.getElementById('city-search').value;
+    generateResults(citySearch);
+}
+
+function generateResults(citySearch) {
     let apiKey = "7e4c79b601721f061335dfefeb6654a7";
     let searchURL = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=metric&appid=${apiKey}`;
     fetch(searchURL)
@@ -160,12 +165,47 @@ function searchCity(event) {
             currentWeather.style.display = 'block';
             forecastHeading.style.display = 'block';
             weatherForecast.style.display = 'flex';
-            });
-})
+            saveHistory(retrievedCityName);
+        });
+});
+    const inputs = document.querySelectorAll('#city-search');
+    inputs.forEach(input => {
+        input.value = '';
+    })
 }
 
-// TODO: display modal if no result is found
+function saveHistory(retrievedCityName) {
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    if (searchHistory === null) {
+        searchHistory = [retrievedCityName];
+    } else {
+        searchHistory.push(retrievedCityName);
+    }
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    showHistory();
+}
 
-// TODO: record data
+function showHistory() {
+    let historyList = document.getElementById('search-history-list');
+    historyList.innerHTML = '';
+    let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    if (searchHistory !== null) {
+        for (let i = 0; i < searchHistory.length; i++) {
+            let history = searchHistory[i];
+            let li = document.createElement('li');  
+            li.setAttribute("style", "list-style-type: none");
+            li.classList = 'btn btn-info text-white';
+            li.textContent = history;
+            li.addEventListener('click', previousSearch);
+            historyList.appendChild(li);
+    }
+}
+}
 
-// TODO: save search history to local storage
+function previousSearch(event) {
+    let clickedItem = event.target;
+    if (event.target.matches('li')) {
+        citySearch=clickedItem.textContent;
+        generateResults(citySearch);
+    }
+}

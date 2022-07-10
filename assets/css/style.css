@@ -2,6 +2,14 @@
     font-family: 'Kanit', sans-serif;
 }
 
+#search-history-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
 .low-uv {
     background-color: lightgreen;
 }
