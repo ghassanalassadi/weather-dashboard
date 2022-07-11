@@ -2,16 +2,21 @@ let currentWeather = document.getElementById('current-weather');
 let forecastHeading = document.getElementById('forecast-heading');
 let weatherForecast = document.getElementById('weather-forecast');
 let historyContainer = document.getElementById('history-container');
+let historyList = document.getElementById('search-history-list');
+
+
+const searchBtn = document.getElementById('search-button');
+const clearBtn = document.getElementById('clear-button');
 
 window.onload = function() {
     currentWeather.style.display = 'none';
     forecastHeading.style.display = 'none';
     weatherForecast.style.display = 'none';
-    historyContainer.style.display = 'block';
 }
 
-const searchBtn = document.getElementById('search-button');
+
 searchBtn.addEventListener('click', searchCity);
+
 
 function searchCity() {
     let citySearch = document.getElementById('city-search').value;
@@ -24,7 +29,6 @@ function generateResults(citySearch) {
     fetch(searchURL)
     .then(firstResponse => firstResponse.json())
     .then(firstData => {
-        console.log(firstData);
         let lon = firstData.coord.lon;
         let lat = firstData.coord.lat;
         let retrievedCityName = firstData.name;
@@ -33,14 +37,13 @@ function generateResults(citySearch) {
         .then(secondResponse => secondResponse.json())
         .then(secondData => {
             // current weather
-            console.log(secondData);
             let retrievedIcon = secondData.current.weather[0].icon; // for retrieving the correct icon
             let currentTemp = secondData.current.temp; // in celsius
             let currentHumidity = secondData.current.humidity; // in percentage
             let currentWind = secondData.current.wind_speed; // in meters/second
             let currentUVIndex = secondData.current.uvi;
-            let currentIcon = document.getElementById('current-icon');
             let cityName = document.getElementById('city-name');
+            let currentIcon = document.getElementById('current-icon');
             let iconURL = `http://openweathermap.org/img/wn/${retrievedIcon}.png`;
             let currentDate = document.getElementById('current-date');
             let weatherDetails = document.getElementById('weather-details');
@@ -178,7 +181,7 @@ function saveHistory(retrievedCityName) {
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     if (searchHistory === null) {
         searchHistory = [retrievedCityName];
-    } else {
+    } else if (searchHistory.indexOf(retrievedCityName) == -1) {
         searchHistory.push(retrievedCityName);
     }
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
@@ -186,7 +189,6 @@ function saveHistory(retrievedCityName) {
 }
 
 function showHistory() {
-    let historyList = document.getElementById('search-history-list');
     historyList.innerHTML = '';
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory'));
     if (searchHistory !== null) {
@@ -205,7 +207,12 @@ function showHistory() {
 function previousSearch(event) {
     let clickedItem = event.target;
     if (event.target.matches('li')) {
-        citySearch=clickedItem.textContent;
+        let citySearch = clickedItem.textContent;
         generateResults(citySearch);
     }
 }
+
+clearBtn.addEventListener('click', function() {
+    localStorage.clear();
+    historyList.innerHTML = '';
+})
